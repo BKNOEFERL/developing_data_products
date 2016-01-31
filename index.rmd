@@ -1,0 +1,72 @@
+---
+title       : Coursera Course Pitch
+subtitle    : univariate analysis - linear model
+author      : Benjamin Knoeferl
+date        : 01.31.2016
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Content
+
+These slides are part of the coursera class "developing data products".
+
+The project consists of two tasks:
+
+* Create a shiny app
+* Create a pitch using RStudio's Presenter or Slidify
+
+
+--- .class #id 
+
+## Purpose of the App
+
+Very often it appears, that one would like to make a univariate data analysis in form of a linear model without using a statistical tool.
+
+With this app, the user is able to select a semikolon delimited csv file containing 6 variables (1 outcome, and 5 explanatory variables).
+
+At the top, he can see the dataframe, below, a histogramm of the variable he selects and at the bottom, the model output of a univariate linear model.
+
+Dataframe has to be structured in following format:
+* Column 1: Outcome
+* Column 2-6: explanatory variables
+
+The User is also able to change the histogram's breaks (from 1 to 50)
+
+
+---
+
+
+
+
+## Data
+
+* test data used for this application is generated in R using rnorm() function.
+* dataframe containing 5 variables (a,b,c,d,e) as well as one outcome y dependent on those
+
+```{r}
+
+a <- rnorm(1000, mean=10, sd=2)
+b <- rnorm(1000, mean=100, sd=10)
+c <- rnorm(1000, mean=0, sd=2)
+d <- rnorm(1000, mean=7, sd=3)
+e <- rnorm(1000, mean=25, sd=2)
+
+y <- 2*a + 4*b - 3*c + 0.5*d + e + rnorm(1000)
+
+dat <- as.data.frame(cbind(y, a, b, c, d, e))
+```
+
+---
+
+## R Code embedded
+
+```{r simple-plot, fig.height = 6, fig.align = 'center', message = F}
+
+dat <- read.csv("C:\\Users\\bknoeferl\\Desktop\\test_data.csv", header=TRUE, sep=";", dec=",")
+hist(dat$a, breaks=30, col="green")
+```
